@@ -32,7 +32,7 @@ const onImgLoad = () => {
         <Loading v-show="loading"></Loading>
         <img
           v-show="!loading"
-          class="w-96 h-48"
+          class="w-96 h-48 rounded"
           :src="doggy.image_url"
           :alt="doggy.name"
           @load="onImgLoad()"
