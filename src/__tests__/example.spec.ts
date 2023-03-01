@@ -1,12 +1,12 @@
 import { mount } from "@vue/test-utils";
-import HelloWorld from "../components/HelloWorld.vue";
+import App from "../App.vue";
 import { describe, it, expect } from "vitest";
 
-describe("HelloWorld.vue", () => {
+describe("App.vue", () => {
   it("should renders is page content is correct", () => {
     const message = "Welcome";
     const testMessage = "count is 0";
-    const wrapper = mount(HelloWorld, {
+    const wrapper = mount(App, {
       props: { message },
     });
 
