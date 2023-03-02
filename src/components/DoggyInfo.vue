@@ -42,7 +42,7 @@ const onImgLoad = () => {
     <table class="mt-12">
       <thead>
         <tr
-          class="bg-green-300 p-2 mb-4 border text-2xl leading-none text-gray-700 dark:text-white"
+          class="bg-green-200 p-2 mb-4 border text-2xl leading-none text-gray-700 dark:text-white"
         >
           <th class="p-2">Trait</th>
           <th>Value</th>
@@ -54,7 +54,7 @@ const onImgLoad = () => {
           :key="index"
           :class="[
             index % 2 ? 'bg-green-100' : '',
-            'text-gray-700 text- text-center font-normal hover:bg-green-200',
+            'text-gray-700 text- text-center font-normal hover:bg-green-400 hover:text-white',
           ]"
         >
           <td class="border p-2">{{ item.trait_type }}</td>

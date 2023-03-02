@@ -6,12 +6,10 @@ import { getDoggyStyle, getDoggyInfoETH } from "./services/doggy/index";
 import Loading from "./components/Loading.vue";
 import Separator from "./components/Separator.vue";
 import DoggyInfo from "./components/DoggyInfo.vue";
+import DancingSnoop from "./components/DancingSnoop.vue";
 import Footer from "./components/Footer.vue";
 
-const loading = reactive({
-  doggyInfo: false,
-  doggyImg: false,
-});
+const loading = ref(false);
 const message = ref("");
 const numberId = ref("");
 const doggy: Doggy = reactive({
@@ -28,8 +26,7 @@ const searchDoggy = async (value?: boolean) => {
     : parseInt(numberId.value);
 
   if (queryId >= 0 && MAX_SUPPLY > queryId) {
-    loading.doggyInfo = true;
-    loading.doggyImg = true;
+    loading.value = true;
 
     // Get the Doggy info
     Promise.all([getDoggyStyle(queryId), getDoggyInfoETH(queryId)])
@@ -43,7 +40,7 @@ const searchDoggy = async (value?: boolean) => {
       .catch((err) => {
         message.value = `Some error happend.`;
       })
-      .finally(() => (loading.doggyInfo = false));
+      .finally(() => (loading.value = false));
   }
 };
 </script>
@@ -83,19 +80,20 @@ const searchDoggy = async (value?: boolean) => {
     </header>
     <Separator></Separator>
     <section class="p-10">
-      <div v-if="loading.doggyInfo">
+      <div v-if="loading">
         <Loading></Loading>
       </div>
-      <div v-else-if="message">{{ message }}</div>
+      <div v-else-if="message" class="text-center">{{ message }}</div>
       <div v-else-if="doggy.owner">
         <DoggyInfo :doggy="doggy"></DoggyInfo>
       </div>
-      <div v-else class="text-center">
+      <div v-else class="flex flex-col justify-center items-center">
         <h2
-          class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-700 dark:text-white"
+          class="mb-4 text-3xl font-extrabold tracking-tight text-gray-700 dark:text-white"
         >
           Search your Doggy
         </h2>
+        <DancingSnoop></DancingSnoop>
       </div>
     </section>
     <Separator></Separator>
